@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telegram Bot Form</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>แจ้งเตือนผ่าน Telegram</h2>
+    <form action="/submit" method="post">
+        <label>ชื่อ-สกุล:</label><br>
+        <input type="text" name="ชื่อ-สกุล" required><br><br>
+
+        <label>เบอร์โทรศัพท์:</label><br>
+        <input type="tel" name="เบอร์โทรศัพท์" required><br><br>
+
+        <label>ข้อความเพิ่มเติม:</label><br>
+        <textarea name="ข้อความเพิ่มเติม"></textarea><br><br>
+
+        <button type="submit">ส่ง</button>
+    </form>
+</body>
+</html>
