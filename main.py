@@ -3,8 +3,8 @@ import requests
 
 app = Flask(__name__)
 
-BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'
-CHAT_ID = 'YOUR_CHAT_ID'
+BOT_TOKEN = '7817159589:AAHYCXZ_Dbd5MeZFpEuKLBuI4Mq3GSbaylQ'
+CHAT_ID = '-1002534008318'
 
 @app.route('/')
 def home():
