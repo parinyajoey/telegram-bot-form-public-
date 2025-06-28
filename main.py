@@ -1,23 +1,26 @@
-from flask import Flask, request
-import requests
+from flask import Flask, render_template, request
+import telebot
 
 app = Flask(__name__)
 
+# Telegram Bot Token
 BOT_TOKEN = '7817159589:AAHYCXZ_Dbd5MeZFpEuKLBuI4Mq3GSbaylQ'
-CHAT_ID = '-1002534008318'
+bot = telebot.TeleBot(BOT_TOKEN)
 
 @app.route('/')
-def home():
-    return '✅ Telegram Bot Form is running on Render!'
+def index():
+    return render_template('form.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    data = request.form.to_dict()
-    message = '\n'.join([f'{key}: {value}' for key, value in data.items()])
-    url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
-    payload = {'chat_id': CHAT_ID, 'text': message}
-    response = requests.post(url, data=payload)
-    return '✅ ส่งข้อความเรียบร้อยแล้ว' if response.status_code == 200 else f'❌ ล้มเหลว: {response.text}', 500
+    name = request.form['ชื่อ-สกุล']
+    phone = request.form['เบอร์โทร']
+    detail = request.form['ข้อความเพิ่มเติม']
+
+    message = f"📬 แบบฟอร์มแจ้งเตือน\n👤 ชื่อ: {name}\n📞 เบอร์: {phone}\n📝 รายละเอียด: {detail}"
+    bot.send_message(chat_id='YOUR_CHAT_ID', text=message)
+
+    return "✅ ส่งข้อมูลเรียบร้อยแล้ว!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    app.run()
